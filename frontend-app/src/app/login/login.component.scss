@@ -1,0 +1,60 @@
+﻿.login-form-wrapper {
+  width: 700px;
+  margin: auto;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5%;
+
+  .login-form {
+    font-family: Segoe UI;
+
+    .login-form-header {
+      font-size: 60px;
+      font-weight: 300;
+      color: white;
+    }
+
+    .login-form-content {
+      margin-top: 50px;
+
+      .form-group {
+        margin-top: 50px;
+      }
+
+      .login-form-label {
+        font-family: "Segoe UI";
+        font-size: 30px;
+        font-weight: 300;
+        color: white;
+      }
+
+      .login-form-input {
+        width: 100%;
+        height: 77px;
+      }
+
+      .login-button {
+        font-family: "Segoe UI";
+        font-size: 30px;
+        font-weight: 300;
+        color: black;
+        background-color: #FFD500;
+        height: 77px;
+        width: 100%;
+        margin-top: 80px;
+        border-radius: 24px;
+      }
+
+      .invalid-feedback {
+        display: inline;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+//::ng-deep .app-background {
+//  background-image: url("./src/assets/background.jpg");
+//  background-size: 100%;
+//}
+

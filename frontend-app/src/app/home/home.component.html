@@ -1,0 +1,20 @@
+﻿<task-list
+  [data]="filterData(tasks, taskStatus.NEW)"
+  [label]="'NOWE'"
+  [withHeader]="true"
+></task-list>
+<div class="break"></div>
+<task-list
+  [data]="filterData(tasks, taskStatus.IN_PROGRESS)"
+  [label]="'W TRAKCIE'"
+></task-list>
+<div class="break"></div>
+<task-list
+  [data]="filterData(tasks, taskStatus.FINISHED)"
+  [label]="'ZAKONCZONE'"
+></task-list>
+<div class="break"></div>
+<task-list
+  [data]="filterData(tasks, taskStatus.INTERRUPTED)"
+  [label]="'WSTRZYMANE'"
+></task-list>

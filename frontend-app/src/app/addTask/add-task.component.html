@@ -1,0 +1,61 @@
+﻿<div class="add-task">
+  <div class="add-task-header">
+    <h1>REJESTRACJA NOWEGO ZGŁOSZENIA</h1>
+    <span class="close-button" (click)="close()">X</span>
+  </div>
+  <div>
+    <div class="add-task-data">
+      <div class="user-info">
+        <h4>Dane klienta</h4>
+        <form [formGroup]="userDataForm">
+          <div class="form-group">
+            <input type="text" formControlName="lastName" class="login-form-input" placeholder="Nazwisko">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="firstName" class="login-form-input" placeholder="Imie">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="personalId" class="login-form-input" placeholder="PESEL">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="phoneNumber" class="login-form-input" placeholder="Telefon komórkowy">
+          </div>
+        </form>
+      </div>
+      <div class="car-info">
+        <h4>Dane samochodu</h4>
+        <form [formGroup]="carDataForm">
+          <div class="form-group">
+            <input type="text" formControlName="registerNumber" class="login-form-input" placeholder="Nazwisko">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="model" class="login-form-input" placeholder="Imie">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="mark" class="login-form-input" placeholder="PESEL">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="vinNumber" class="login-form-input" placeholder="Telefon komórkowy">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="add-task-description">
+      <div class="task-info">
+        <form [formGroup]="interviewForm">
+          <h4>Wywiad - opis zlecenia / problemu</h4>
+          <textarea type="text" formControlName="interviewTaskDescription" class="login-form-input"
+                    placeholder="Klient zgłasza potrzebę..."></textarea>
+        </form>
+      </div>
+      <div class="description">
+        <form [formGroup]="descriptionForm">
+          <h4>Opis wykonanych zadań</h4>
+          <textarea type="text" formControlName="doneTaskDescription" class="login-form-input"
+                    placeholder="Zostało wykonane..."></textarea>
+        </form>
+      </div>
+      <button>Dodaj zlecenie</button>
+    </div>
+  </div>
+</div>
