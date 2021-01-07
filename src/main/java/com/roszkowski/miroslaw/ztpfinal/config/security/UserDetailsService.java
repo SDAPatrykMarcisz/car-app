@@ -1,4 +1,4 @@
-package com.roszkowski.miroslaw.ztpfinal.config;
+package com.roszkowski.miroslaw.ztpfinal.config.security;
 
 
 import com.roszkowski.miroslaw.ztpfinal.model.users.User;
@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.Optional;
+
 @Service
+@Transactional //potrzebne bo inaczej leci na relacji oneToMany LazyInitializationException
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     private final UserService userService;
@@ -19,9 +23,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User byUsername = userService
-                .getByUsername(userName)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("user %s not found", userName)));
+        User byUsername = new User(userService.getByUsername(userName));
         return new UserDetails(byUsername);
     }
 }

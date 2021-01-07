@@ -26,16 +26,16 @@
         <h4>Dane samochodu</h4>
         <form [formGroup]="carDataForm">
           <div class="form-group">
-            <input type="text" formControlName="registerNumber" class="login-form-input" placeholder="Nazwisko">
+            <input type="text" formControlName="registerNumber" class="login-form-input" placeholder="Numer rejestracyjny">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="model" class="login-form-input" placeholder="Imie">
+            <input type="text" formControlName="model" class="login-form-input" placeholder="Model">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="mark" class="login-form-input" placeholder="PESEL">
+            <input type="text" formControlName="mark" class="login-form-input" placeholder="Marka">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="vinNumber" class="login-form-input" placeholder="Telefon komórkowy">
+            <input type="text" formControlName="vinNumber" class="login-form-input" placeholder="Numer VIN">
           </div>
         </form>
       </div>
@@ -55,7 +55,7 @@
                     placeholder="Zostało wykonane..."></textarea>
         </form>
       </div>
-      <button>Dodaj zlecenie</button>
+      <button (click)="addTask()">Dodaj zlecenie</button>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-package com.roszkowski.miroslaw.ztpfinal.config;
+package com.roszkowski.miroslaw.ztpfinal.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,11 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return NoOpPasswordEncoder.getInstance();
     }
 
-    @Bean
-    public AuthenticationSuccessHandler appAuthenticationSuccessHandler(){
-        return new AppAuthenticationSuccessHandler();
-    }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
@@ -37,12 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 //                .antMatchers("/**").permitAll()
 //                .antMatchers(HttpMethod.POST, "/api/authenticate").authenticated()
+                .antMatchers("/h2-console*/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
                 .and()
                 .csrf().disable()
-                .cors().disable();
+                .cors().disable()
+                .headers().frameOptions().sameOrigin();
     }
 }

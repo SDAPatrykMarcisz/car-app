@@ -1,7 +1,5 @@
 ﻿import {Component, OnDestroy, OnInit} from '@angular/core';
-import {first} from 'rxjs/operators';
 
-import {User} from '@app/_models';
 import {UserService} from '@app/_services';
 import {Task} from '@app/_models/task/task';
 import {TaskStatus} from "@app/_models/task/task-status";
@@ -15,7 +13,6 @@ import {TaskService} from "@app/_services/task.service";
 )
 export class HomeComponent implements OnInit, OnDestroy{
   loading = false;
-  users: User[];
   tasks: Array<Task>;
   taskStatus = TaskStatus;
 
@@ -28,68 +25,10 @@ export class HomeComponent implements OnInit, OnDestroy{
   ngOnInit() {
     document.body.classList.add('app-colored-background');
     this.loading = true;
-    this.userService.getAll().pipe(first()).subscribe(users => {
+    this.taskService.getAll().subscribe(response => {
       this.loading = false;
-      this.users = users;
+      this.tasks = response.taskList;
     });
-    this.tasks = [
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.NEW
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.NEW
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.FINISHED
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.FINISHED
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.IN_PROGRESS
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.IN_PROGRESS
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.INTERRUPTED
-      },
-      {
-        mark: 'Opel',
-        model: 'Astra',
-        mechanic: 'Patryk Marcisz',
-        registerNumber: 'RJS 40S8',
-        status: TaskStatus.INTERRUPTED
-      }
-    ];
   }
 
   ngOnDestroy() {
@@ -97,10 +36,10 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
   filterData(data: Array<Task>, status: TaskStatus): Array<Task> {
-    if (data.length == 0) {
+    if (!data || data.length == 0) {
       return [];
     }
-    console.log(data.filter(x => x.status == status));
+    // console.log(data.filter(x => x.status == status));
     return data.filter(x => x.status == status);
   }
 }

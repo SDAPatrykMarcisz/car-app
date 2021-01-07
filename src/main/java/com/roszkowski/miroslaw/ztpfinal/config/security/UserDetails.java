@@ -1,4 +1,4 @@
-package com.roszkowski.miroslaw.ztpfinal.config;
+package com.roszkowski.miroslaw.ztpfinal.config.security;
 
 import com.roszkowski.miroslaw.ztpfinal.model.users.User;
 import org.springframework.security.core.GrantedAuthority;

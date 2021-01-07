@@ -17,7 +17,6 @@ export class TaskListComponent implements OnInit{
   taskStatus = TaskStatus;
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
 

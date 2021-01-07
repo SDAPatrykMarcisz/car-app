@@ -1,28 +1,20 @@
 package com.roszkowski.miroslaw.ztpfinal.service;
 
-import com.roszkowski.miroslaw.ztpfinal.model.users.Role;
 import com.roszkowski.miroslaw.ztpfinal.model.users.User;
+import com.roszkowski.miroslaw.ztpfinal.repository.UserRepository;
+import com.roszkowski.miroslaw.ztpfinal.repository.dao.UserEntity;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    private final Map<String, User> usersMap;
+    private final UserRepository userRepository;
 
-    {
-        usersMap = new HashMap<>();
-        Stream.of(
-                new User("user", "user123"),
-                new User("admin", "admin123", Role.USER, Role.ADMIN),
-                new User("test", "test123", new Role[0])
-        ).forEach(user -> usersMap.put(user.getLogin(), user));
-    }
-
-    public Optional<User> getByUsername(String username) {
-        return Optional.ofNullable(usersMap.get(username));
+    public UserEntity getByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(String.format("user %s not found", username)));
     }
 }

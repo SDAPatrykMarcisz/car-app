@@ -1,27 +1,27 @@
 package com.roszkowski.miroslaw.ztpfinal.repository.dao;
 
+import com.roszkowski.miroslaw.ztpfinal.model.users.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Data
 @Entity
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class TaskEntity {
+public class RoleEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Role roleName;
 
-    private String mark;
-    private String model;
-    private String registerNumber;
-    @OneToOne
-    private UserEntity mechanic;
-    private String status;
 
 }
