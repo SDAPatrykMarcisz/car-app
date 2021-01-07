@@ -26,7 +26,8 @@
         <h4>Dane samochodu</h4>
         <form [formGroup]="carDataForm">
           <div class="form-group">
-            <input type="text" formControlName="registerNumber" class="login-form-input" placeholder="Numer rejestracyjny">
+            <input type="text" formControlName="registerNumber" class="login-form-input"
+                   placeholder="Numer rejestracyjny">
           </div>
           <div class="form-group">
             <input type="text" formControlName="model" class="login-form-input" placeholder="Model">
@@ -53,6 +54,15 @@
           <h4>Opis wykonanych zadań</h4>
           <textarea type="text" formControlName="doneTaskDescription" class="login-form-input"
                     placeholder="Zostało wykonane..."></textarea>
+        </form>
+      </div>
+      <div class="state">
+        <form [formGroup]="statusForm">
+        <span>Status: </span>
+        <select formControlName="status" id="status">
+          <option *ngFor="let status of taskStatuses"
+                  value="{{status}}">{{status | ConvertStatusPipe}}</option>
+        </select>
         </form>
       </div>
       <button (click)="addTask()">Dodaj zlecenie</button>

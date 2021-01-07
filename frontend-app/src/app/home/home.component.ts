@@ -2,8 +2,9 @@
 
 import {UserService} from '@app/_services';
 import {Task} from '@app/_models/task/task';
-import {TaskStatus} from "@app/_models/task/task-status";
 import {TaskService} from "@app/_services/task.service";
+import {AddTaskComponent} from "@app/addTask";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component(
   {
@@ -14,16 +15,20 @@ import {TaskService} from "@app/_services/task.service";
 export class HomeComponent implements OnInit, OnDestroy{
   loading = false;
   tasks: Array<Task>;
-  taskStatus = TaskStatus;
 
   constructor(
     private userService: UserService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private modalService: NgbModal
   ) {
   }
 
   ngOnInit() {
     document.body.classList.add('app-colored-background');
+    this.reloadTasks();
+  }
+
+  private reloadTasks() {
     this.loading = true;
     this.taskService.getAll().subscribe(response => {
       this.loading = false;
@@ -35,11 +40,13 @@ export class HomeComponent implements OnInit, OnDestroy{
     document.body.classList.remove('app-colored-background');
   }
 
-  filterData(data: Array<Task>, status: TaskStatus): Array<Task> {
-    if (!data || data.length == 0) {
-      return [];
-    }
-    // console.log(data.filter(x => x.status == status));
-    return data.filter(x => x.status == status);
+  addTaskModal(){
+    this.modalService.open(AddTaskComponent, {
+      windowClass: 'add-task-window',
+      backdrop: 'static',
+      keyboard: false,
+      centered: true,
+      size: "xl"
+    }).result.finally(() => this.reloadTasks())
   }
 }

@@ -11,6 +11,7 @@ import {HomeComponent} from './home';
 import {LoginComponent} from './login';
 import {TaskListComponent} from "./taskList";
 import {AddTaskComponent} from "@app/addTask";
+import {ConvertStatusPipe} from "@app/pipes/status.pipe";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {AddTaskComponent} from "@app/addTask";
     HomeComponent,
     LoginComponent,
     TaskListComponent,
+    ConvertStatusPipe
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},

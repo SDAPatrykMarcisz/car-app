@@ -12,7 +12,6 @@ export class AppComponent {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private modalService: NgbModal
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -24,15 +23,5 @@ export class AppComponent {
 
   getInitials() {
     return this.currentUser.firstName.charAt(0) + this.currentUser.lastName.charAt(0);
-  }
-
-  addTaskModal(){
-    const modalRef: NgbModalRef = this.modalService.open(AddTaskComponent, {
-      windowClass: 'add-task-window',
-      backdrop: 'static',
-      keyboard: false,
-      centered: true,
-      size: "xl"
-    })
   }
 }

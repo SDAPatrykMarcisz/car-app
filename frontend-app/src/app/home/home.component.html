@@ -1,20 +1,27 @@
-﻿<task-list
-  [data]="filterData(tasks, taskStatus.NEW)"
+﻿<div class="round-button plus" (click)="addTaskModal()">+</div>
+
+<task-list
+  [data]="tasks"
+  [filterByStatus]="'NEW'"
   [label]="'NOWE'"
   [withHeader]="true"
 ></task-list>
 <div class="break"></div>
 <task-list
-  [data]="filterData(tasks, taskStatus.IN_PROGRESS)"
+  [data]="tasks"
+  [filterByStatus]="'IN_PROGRESS'"
   [label]="'W TRAKCIE'"
 ></task-list>
 <div class="break"></div>
 <task-list
-  [data]="filterData(tasks, taskStatus.FINISHED)"
+  [data]="tasks"
+  [filterByStatus]="'FINISHED'"
   [label]="'ZAKONCZONE'"
 ></task-list>
 <div class="break"></div>
 <task-list
-  [data]="filterData(tasks, taskStatus.INTERRUPTED)"
+  [data]="tasks"
+  [filterByStatus]="'INTERRUPTED'"
   [label]="'WSTRZYMANE'"
 ></task-list>
+

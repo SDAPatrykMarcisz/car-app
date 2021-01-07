@@ -3,8 +3,8 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TaskService} from "@app/_services/task.service";
 import {Task} from '@app/_models/task/task';
-import {TaskStatus} from "@app/_models/task/task-status";
 import {User} from "@app/_models";
+import {TaskStatuses} from "@app/_models/task/task-status";
 
 @Component(
   {
@@ -18,9 +18,12 @@ export class AddTaskComponent implements OnInit {
   carDataForm: FormGroup;
   interviewForm: FormGroup;
   descriptionForm: FormGroup;
+  statusForm: FormGroup;
 
   submitted: boolean;
   error: string;
+
+  taskStatuses = TaskStatuses;
 
   constructor(
     private modal: NgbActiveModal,
@@ -67,18 +70,23 @@ export class AddTaskComponent implements OnInit {
         doneTaskDescription: ['', Validators.required]
       }
     );
+
+    this.statusForm = this.formBuilder.group({
+      status: ['', Validators.required]
+    })
   }
 
   addTask() {
     let user: User = JSON.parse(localStorage.getItem('currentUser'));
     console.log(user);
     let requestBody:Task = {
-      status: TaskStatus.NEW,
+      status: this.statusForm.get("status").value,
       mechanic: user.username,
       registerNumber: this.carDataForm.get("registerNumber").value,
       model: this.carDataForm.get("model").value,
       mark: this.carDataForm.get("mark").value
     }
     this.taskService.addNew(requestBody);
+    this.modal.close();
   }
 }

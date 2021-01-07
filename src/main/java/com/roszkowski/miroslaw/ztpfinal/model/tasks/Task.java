@@ -14,5 +14,5 @@ public class Task {
     private String model;
     private String registerNumber;
     private String mechanic;
-    private String status;
+    private TaskStatus status;
 }

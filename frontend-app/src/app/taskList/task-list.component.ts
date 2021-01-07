@@ -1,7 +1,6 @@
 ﻿import {Component, Input, OnInit} from '@angular/core';
 
 import {Task} from "@app/_models/task/task";
-import {TaskStatus} from "@app/_models/task/task-status";
 
 @Component(
   {
@@ -14,9 +13,23 @@ export class TaskListComponent implements OnInit{
   @Input() data: Array<Task>;
   @Input() label: string;
   @Input() withHeader: boolean = false;
-  taskStatus = TaskStatus;
+  @Input() filterByStatus: string;
 
   ngOnInit(): void {
+  }
+
+  get tasks(){
+    return this.filterData();
+  }
+
+  private filterData(): Array<Task> {
+    if (!this.data || this.data.length == 0) {
+      return [];
+    }
+    if(this.filterByStatus){
+      return this.data.filter(x => x.status == this.filterByStatus);
+    }
+    return this.data;
   }
 
 

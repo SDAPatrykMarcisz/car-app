@@ -11,12 +11,12 @@
     <th>status</th>
   </tr>
 
-  <tr *ngFor="let task of data; let first=first">
+  <tr *ngFor="let task of tasks; let first=first">
     <td *ngIf="first"><div>{{label}}</div></td>
     <td *ngIf="!first"><div></div></td>
     <td><div>{{task.mark}}/{{task.model}}</div></td>
     <td><div>{{task.registerNumber}}</div></td>
     <td><div>{{task.mechanic}}</div></td>
-    <td><div>{{taskStatus[task.status]}}</div></td>
+    <td><div>{{task.status | ConvertStatusPipe}}</div></td>
   </tr>
 </table>

@@ -1,5 +1,6 @@
 package com.roszkowski.miroslaw.ztpfinal.repository.dao;
 
+import com.roszkowski.miroslaw.ztpfinal.model.tasks.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,6 @@ public class TaskEntity {
     private String registerNumber;
     @OneToOne
     private UserEntity mechanic;
-    private String status;
+    private TaskStatus status;
 
 }
