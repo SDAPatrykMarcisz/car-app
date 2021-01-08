@@ -6,10 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
+@Transactional
 public class AuthenticateApiController {
 
     private final UserService userService;

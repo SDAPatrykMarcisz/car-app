@@ -5,11 +5,13 @@ import com.roszkowski.miroslaw.ztpfinal.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.security.Principal;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/tasks")
+@Transactional
 public class TaskController {
 
     private final TaskService taskService;
@@ -24,6 +26,11 @@ public class TaskController {
     @PostMapping
     public void addTask(@RequestBody Task requestBody){
         taskService.addNew(requestBody);
+    }
+
+    @PutMapping("/{id}")
+    public void updateTask(@RequestBody Task requestBody, @PathVariable Long id){
+        taskService.update(requestBody, id);
     }
 
 

@@ -1,12 +1,13 @@
-﻿<div class="add-task">
+﻿<div class="close-line">
+  <div class="round-button plus" (click)="close()">X</div>
+</div>
+<div class="add-task">
   <div class="add-task-header">
-    <h1>REJESTRACJA NOWEGO ZGŁOSZENIA</h1>
-    <span class="close-button" (click)="close()">X</span>
   </div>
   <div>
     <div class="add-task-data">
       <div class="user-info">
-        <h4>Dane klienta</h4>
+        <div class="subheader">Dane klienta</div><i class="fa fa-search" (click)="openUserSearch()"></i>
         <form [formGroup]="userDataForm">
           <div class="form-group">
             <input type="text" formControlName="lastName" class="login-form-input" placeholder="Nazwisko">
@@ -23,17 +24,17 @@
         </form>
       </div>
       <div class="car-info">
-        <h4>Dane samochodu</h4>
+        <div class="subheader">Dane samochodu</div><i class="fa fa-search" (click)="openCarSearch()"></i>
         <form [formGroup]="carDataForm">
           <div class="form-group">
             <input type="text" formControlName="registerNumber" class="login-form-input"
                    placeholder="Numer rejestracyjny">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="model" class="login-form-input" placeholder="Model">
+            <input type="text" formControlName="mark" class="login-form-input" placeholder="Marka">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="mark" class="login-form-input" placeholder="Marka">
+            <input type="text" formControlName="model" class="login-form-input" placeholder="Model">
           </div>
           <div class="form-group">
             <input type="text" formControlName="vinNumber" class="login-form-input" placeholder="Numer VIN">
@@ -43,29 +44,30 @@
     </div>
     <div class="add-task-description">
       <div class="task-info">
+        <div class="subheader">Wywiad - opis zlecenia / problemu</div>
         <form [formGroup]="interviewForm">
-          <h4>Wywiad - opis zlecenia / problemu</h4>
           <textarea type="text" formControlName="interviewTaskDescription" class="login-form-input"
                     placeholder="Klient zgłasza potrzebę..."></textarea>
         </form>
       </div>
       <div class="description">
         <form [formGroup]="descriptionForm">
-          <h4>Opis wykonanych zadań</h4>
-          <textarea type="text" formControlName="doneTaskDescription" class="login-form-input"
+          <div class="subheader">Opis wykonanych zadań</div>
+          <textarea type="text" formControlName="taskDoneDescription" class="login-form-input"
                     placeholder="Zostało wykonane..."></textarea>
         </form>
       </div>
       <div class="state">
-        <form [formGroup]="statusForm">
-        <span>Status: </span>
-        <select formControlName="status" id="status">
-          <option *ngFor="let status of taskStatuses"
-                  value="{{status}}">{{status | ConvertStatusPipe}}</option>
-        </select>
+        <form #statusForm="ngForm" (change)="setStatus(statusForm.value)">
+          <span class="subheader">Status: </span>
+          <div class="radio-input" *ngFor="let status of taskStatuses">
+            <input type="radio" id="{{status}}" name="status" value="{{status}}" ngModel [checked]="status == statusSelected">
+            <label for="{{status}}">{{status | ConvertStatusPipe}}</label>
+          </div>
         </form>
       </div>
-      <button (click)="addTask()">Dodaj zlecenie</button>
+      <button (click)="save()">Zapisz</button>
+      <button (click)="save()">Usuń</button>
     </div>
   </div>
 </div>

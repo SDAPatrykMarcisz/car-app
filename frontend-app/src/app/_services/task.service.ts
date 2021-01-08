@@ -14,12 +14,10 @@ export class TaskService {
   }
 
   addNew(newTask: Task) {
-    console.log('calling');
-    console.log(newTask);
-    this.http.post(
-      `${environment.apiUrl}/api/tasks`,
-      newTask
-    ).subscribe();
-    console.log('finished');
+    return this.http.post(`${environment.apiUrl}/api/tasks`,newTask);
+  }
+
+  update(task: Task){
+    return this.http.put(`${environment.apiUrl}/api/tasks/${task.id}`, task);
   }
 }

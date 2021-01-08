@@ -1,6 +1,9 @@
-﻿import {Component, Input, OnInit} from '@angular/core';
+﻿import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 import {Task} from "@app/_models/task/task";
+import {EditTaskComponent} from "@app/editTask";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {TaskService} from "@app/_services/task.service";
 
 @Component(
   {
@@ -9,16 +12,22 @@ import {Task} from "@app/_models/task/task";
     styleUrls: ['task-list.component.scss']
   }
 )
-export class TaskListComponent implements OnInit{
+export class TaskListComponent implements OnInit {
   @Input() data: Array<Task>;
   @Input() label: string;
   @Input() withHeader: boolean = false;
   @Input() filterByStatus: string;
 
+  @Output() dataEdited: EventEmitter<void> = new EventEmitter<void>();
+
   ngOnInit(): void {
   }
 
-  get tasks(){
+  constructor(private modalService: NgbModal,
+              private taskService: TaskService) {
+  }
+
+  get tasks() {
     return this.filterData();
   }
 
@@ -26,11 +35,32 @@ export class TaskListComponent implements OnInit{
     if (!this.data || this.data.length == 0) {
       return [];
     }
-    if(this.filterByStatus){
+    if (this.filterByStatus) {
       return this.data.filter(x => x.status == this.filterByStatus);
     }
     return this.data;
   }
 
 
+  editTask(task: Task) {
+    let ngbModalRef = this.modalService.open(EditTaskComponent, {
+      windowClass: 'add-task-window',
+      backdrop: 'static',
+      keyboard: false,
+      centered: true,
+      size: "xl"
+    });
+    ngbModalRef.componentInstance.loadTaskToEdit(task);
+    ngbModalRef.result.then(request => {
+      if (request) {
+        this.taskService.update(request).subscribe(() => this.dataEdited.emit());
+      }
+    }).catch(error => {
+      console.log(error);
+    })
+  }
+
+  deleteTask(task: Task) {
+
+  }
 }

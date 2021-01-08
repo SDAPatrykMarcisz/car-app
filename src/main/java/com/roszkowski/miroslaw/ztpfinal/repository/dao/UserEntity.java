@@ -21,8 +21,8 @@ public class UserEntity {
 
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String position;
+
     @ManyToMany
     @JoinTable(
             name = "users_roles",
@@ -31,4 +31,12 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<RoleEntity> roles;
+
+    @OneToOne
+    private PersonEntity personDetails;
+
+    public String getName(){
+        return personDetails.getFirstName().concat(" ").concat(personDetails.getLastName());
+    }
+
 }

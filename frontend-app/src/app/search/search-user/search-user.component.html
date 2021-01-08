@@ -1,0 +1,15 @@
+﻿<div class="close-line">
+  <div class="round-button plus" (click)="close()">X</div>
+</div>
+<div class="search-car">
+  <div class="search-input">
+    <form [formGroup]="searchForm">
+      <div class="form-group">
+        <input type="text" formControlName="searchInput" class="login-form-input" placeholder="kryteria wyszukiwania..." (keyup)="search($event.target.value)">
+      </div>
+    </form>
+  </div>
+  <div class="search-results" *ngIf="searchResults">
+    <div *ngFor="let client of searchResults" (click)="selectClient(client)">{{client.firstName}} {{client.lastName}} {{client.personalId}} {{client.contact?.phoneNumber}}</div>
+  </div>
+</div>

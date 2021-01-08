@@ -3,7 +3,7 @@
 import {UserService} from '@app/_services';
 import {Task} from '@app/_models/task/task';
 import {TaskService} from "@app/_services/task.service";
-import {AddTaskComponent} from "@app/addTask";
+import {EditTaskComponent} from "@app/editTask";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component(
@@ -28,10 +28,11 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.reloadTasks();
   }
 
-  private reloadTasks() {
+  public reloadTasks() {
     this.loading = true;
     this.taskService.getAll().subscribe(response => {
       this.loading = false;
+      this.tasks = null;
       this.tasks = response.taskList;
     });
   }
@@ -41,12 +42,12 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
   addTaskModal(){
-    this.modalService.open(AddTaskComponent, {
+    this.modalService.open(EditTaskComponent, {
       windowClass: 'add-task-window',
       backdrop: 'static',
       keyboard: false,
       centered: true,
       size: "xl"
-    }).result.finally(() => this.reloadTasks())
+    }).result.then(request => this.taskService.addNew(request).subscribe(() => this.reloadTasks()))
   }
 }

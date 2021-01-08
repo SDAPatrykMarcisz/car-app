@@ -1,0 +1,100 @@
+﻿.add-task {
+  .add-task-header {
+    display: flex;
+
+    .close-button {
+      flex-direction: row;
+    }
+
+  }
+
+  .subheader {
+    font-size: 16px;
+    font-weight: 500;
+    height: 43px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .user-info {
+    margin-bottom: 19px;
+  }
+
+  .add-task-data {
+    padding-left: 65px;
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+
+    .form-group {
+      .login-form-input {
+        border-style: solid;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+        border-bottom-width: 0.5pt;
+        border-bottom-color: #707070;
+      }
+    }
+
+  }
+
+  .add-task-description {
+    width: 70%;
+    display: inline-block;
+    vertical-align: top;
+
+    .task-info, .description {
+      padding-right: 60px;
+      margin-bottom: 33px;
+
+      textarea {
+        width: 100%;
+        height: 120px;
+        resize: none;
+      }
+
+    }
+
+    .state {
+      .radio-input {
+        display: inline-block;
+        margin: auto 10px;
+
+        input {
+          margin-right: 5px;
+        }
+      }
+    }
+
+    button {
+      margin: 20px 30px;
+      float: right;
+      font-family: "Segoe UI";
+      font-size: 15px;
+      font-weight: 300;
+      color: black;
+      background-color: #FFD500;
+      border-radius: 24px;
+      width: 120px;
+    }
+  }
+}
+
+.close-line {
+  width: 100%;
+  .round-button.plus {
+    margin: 15px 15px 15px 95%;
+    width: 30px;
+    height: 30px;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: #FFD500;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 100%;
+
+  }
+}

@@ -4,8 +4,8 @@
   <div class="navbar-nav">
     <div class="round-button">{{getInitials()}}</div>
     <div class="userInfo">
-      <div class="name">{{currentUser.firstName + ' ' + currentUser.lastName}}</div>
-      <div class="position">młodszy mechanik</div>
+      <div class="name">{{getName()}}</div>
+      <div class="position">{{currentUser.position}}</div>
       <div class="login" (click)="logout()"> Wyloguj</div>
       <!--      ({{currentUser.username}})-->
     </div>

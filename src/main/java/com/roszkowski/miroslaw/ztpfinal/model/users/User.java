@@ -3,7 +3,6 @@ package com.roszkowski.miroslaw.ztpfinal.model.users;
 import com.roszkowski.miroslaw.ztpfinal.repository.dao.RoleEntity;
 import com.roszkowski.miroslaw.ztpfinal.repository.dao.UserEntity;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 

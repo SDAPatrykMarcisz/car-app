@@ -3,25 +3,29 @@
 <task-list
   [data]="tasks"
   [filterByStatus]="'NEW'"
-  [label]="'NOWE'"
+  [label]="'nowe'"
   [withHeader]="true"
+  (dataEdited)="reloadTasks()"
 ></task-list>
 <div class="break"></div>
 <task-list
   [data]="tasks"
   [filterByStatus]="'IN_PROGRESS'"
-  [label]="'W TRAKCIE'"
+  [label]="'w trakcie'"
+  (dataEdited)="reloadTasks()"
 ></task-list>
 <div class="break"></div>
 <task-list
   [data]="tasks"
   [filterByStatus]="'FINISHED'"
-  [label]="'ZAKONCZONE'"
+  [label]="'zakończone'"
+  (dataEdited)="reloadTasks()"
 ></task-list>
 <div class="break"></div>
 <task-list
   [data]="tasks"
   [filterByStatus]="'INTERRUPTED'"
-  [label]="'WSTRZYMANE'"
+  [label]="'wstrzymane'"
+  (dataEdited)="reloadTasks()"
 ></task-list>
 

@@ -1,7 +1,12 @@
+import {PersonDetails, User} from "@app/_models/task/index";
+import {Car} from "@app/_models/task/car";
+
 export class Task {
-  mark: string;
-  model: string;
-  registerNumber: string;
-  mechanic: string;
+  id: number;
+  car: Car;
   status: string;
+  mechanic: User;
+  client: PersonDetails;
+  taskInterview: string;
+  taskDoneDescription: string;
 }

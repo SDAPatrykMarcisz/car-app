@@ -18,11 +18,16 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mark;
-    private String model;
-    private String registerNumber;
+    @OneToOne
+    private CarEntity car;
+
     @OneToOne
     private UserEntity mechanic;
+    @OneToOne
+    private PersonEntity client;
+
     private TaskStatus status;
+    private String taskInterview;
+    private String taskDoneDescription;
 
 }
