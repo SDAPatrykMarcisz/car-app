@@ -1,0 +1,30 @@
+﻿<div class="round-button plus" (click)="addTaskModal()">+</div>
+<task-list
+  [data]="tasks"
+  [filterByStatus]="'NEW'"
+  [label]="'nowe'"
+  [withHeader]="true"
+  (dataEdited)="reloadTasks()"
+></task-list>
+<div class="break"></div>
+<task-list
+  [data]="tasks"
+  [filterByStatus]="'IN_PROGRESS'"
+  [label]="'w trakcie'"
+  (dataEdited)="reloadTasks()"
+></task-list>
+<div class="break"></div>
+<task-list
+  [data]="tasks"
+  [filterByStatus]="'FINISHED'"
+  [label]="'zakończone'"
+  (dataEdited)="reloadTasks()"
+></task-list>
+<div class="break"></div>
+<task-list
+  [data]="tasks"
+  [filterByStatus]="'INTERRUPTED'"
+  [label]="'wstrzymane'"
+  (dataEdited)="reloadTasks()"
+></task-list>
+

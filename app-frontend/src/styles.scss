@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+a { cursor: pointer }
+
+.app-imaged-background {
+  height: 100%;
+  background-image: url("/assets/background.jpg");
+  background-size: 100%;
+}
+
+.app-colored-background{
+  background-image: none;
+  background-color: #ECECEB;
+}
+

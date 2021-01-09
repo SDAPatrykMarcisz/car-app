@@ -1,0 +1,12 @@
+﻿import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+
+@Component(
+  {
+    selector: 'loading-indicator',
+    templateUrl: 'loading-indicator.component.html',
+    styleUrls: ['loading-indicator.component.scss']
+  }
+)
+export class LoadingIndicatorComponent{
+  @Input() isLoading: boolean;
+}
