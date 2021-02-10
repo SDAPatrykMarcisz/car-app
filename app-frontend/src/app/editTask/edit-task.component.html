@@ -7,37 +7,46 @@
   <div>
     <div class="add-task-data">
       <div class="user-info">
-        <div class="subheader">Dane klienta</div><i class="fa fa-search" (click)="openUserSearch()"></i>
+        <div class="subheader">Dane klienta</div>
+        <i class="fa fa-search" (click)="openUserSearch()"></i>
         <form [formGroup]="userDataForm">
           <div class="form-group">
-            <input type="text" formControlName="lastName" class="login-form-input" placeholder="Nazwisko">
+            <div class="form-group">
+              <input type="text" formControlName="firstName" class="login-form-input" placeholder="Imie"
+                     [ngClass]="{ 'is-invalid': submitted && userForm.firstName.errors }">
+            </div>
+            <input type="text" formControlName="lastName" class="login-form-input" placeholder="Nazwisko"
+                   [ngClass]="{ 'is-invalid': submitted && userForm.lastName.errors }">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="firstName" class="login-form-input" placeholder="Imie">
+            <input type="text" formControlName="personalId" class="login-form-input" placeholder="PESEL"
+                   [ngClass]="{ 'is-invalid': submitted && userForm.personalId.errors }">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="personalId" class="login-form-input" placeholder="PESEL">
-          </div>
-          <div class="form-group">
-            <input type="text" formControlName="phoneNumber" class="login-form-input" placeholder="Telefon komórkowy">
+            <input type="text" formControlName="phoneNumber" class="login-form-input" placeholder="Telefon komórkowy"
+                   [ngClass]="{ 'is-invalid': submitted && userForm.phoneNumber.errors }">
           </div>
         </form>
       </div>
       <div class="car-info">
-        <div class="subheader">Dane samochodu</div><i class="fa fa-search" (click)="openCarSearch()"></i>
+        <div class="subheader">Dane samochodu</div>
+        <i class="fa fa-search" (click)="openCarSearch()"></i>
         <form [formGroup]="carDataForm">
           <div class="form-group">
             <input type="text" formControlName="registerNumber" class="login-form-input"
-                   placeholder="Numer rejestracyjny">
+                   placeholder="Numer rejestracyjny" [ngClass]="{ 'is-invalid': submitted && carForm.registerNumber.errors }">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="mark" class="login-form-input" placeholder="Marka">
+            <input type="text" formControlName="mark" class="login-form-input"
+                   placeholder="Marka" [ngClass]="{ 'is-invalid': submitted && carForm.mark.errors }">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="model" class="login-form-input" placeholder="Model">
+            <input type="text" formControlName="model" class="login-form-input"
+                   placeholder="Model" [ngClass]="{ 'is-invalid': submitted && carForm.model.errors }">
           </div>
           <div class="form-group">
-            <input type="text" formControlName="vinNumber" class="login-form-input" placeholder="Numer VIN">
+            <input type="text" formControlName="vinNumber" class="login-form-input"
+                   placeholder="Numer VIN" [ngClass]="{ 'is-invalid': submitted && carForm.vinNumber.errors }">
           </div>
         </form>
       </div>
@@ -59,15 +68,18 @@
       </div>
       <div class="state">
         <form #statusForm="ngForm" (change)="setStatus(statusForm.value)">
-          <span class="subheader">Status: </span>
+          <span class="subheader" [ngClass]="{ 'is-invalid': submitted && !statusSelected }">Status: </span>
           <div class="radio-input" *ngFor="let status of taskStatuses">
-            <input type="radio" id="{{status}}" name="status" value="{{status}}" ngModel [checked]="status == statusSelected">
-            <label for="{{status}}">{{status | ConvertStatusPipe}}</label>
+            <input type="radio" id="{{status}}" name="status" value="{{status}}" ngModel
+                   [checked]="status == statusSelected">
+            <label for="{{status}}">
+              {{status | ConvertStatusPipe}}
+            </label>
           </div>
         </form>
       </div>
-      <button (click)="save()">Zapisz</button>
-      <button (click)="save()">Usuń</button>
+      <button (click)="save()" [disabled]="loading">Zapisz</button>
+      <button (click)="delete()" [disabled]="!taskToEdit?.id">Usuń</button>
     </div>
   </div>
 </div>

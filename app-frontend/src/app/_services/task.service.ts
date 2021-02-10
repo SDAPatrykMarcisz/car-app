@@ -14,10 +14,14 @@ export class TaskService {
   }
 
   addNew(newTask: Task) {
-    return this.http.post(`${environment.apiUrl}/api/tasks`,newTask);
+    return this.http.post(`${environment.apiUrl}/api/tasks`, newTask);
   }
 
   update(task: Task){
     return this.http.put(`${environment.apiUrl}/api/tasks/${task.id}`, task);
+  }
+
+  delete(taskId: number){
+    return this.http.delete(`${environment.apiUrl}/api/tasks/${taskId}`)
   }
 }

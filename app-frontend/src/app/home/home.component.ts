@@ -48,6 +48,6 @@ export class HomeComponent implements OnInit, OnDestroy{
       keyboard: false,
       centered: true,
       size: "xl"
-    }).result.then(request => this.taskService.addNew(request).subscribe(() => this.reloadTasks()))
+    }).result.then(request => this.taskService.addNew(request.data).subscribe(() => this.reloadTasks()))
   }
 }

@@ -83,11 +83,27 @@ export class EditTaskComponent implements OnInit {
     this.modal.close();
   }
 
-  get form() {
+  get userForm() {
     return this.userDataForm.controls;
   }
 
+  get carForm() {
+    return this.carDataForm.controls;
+  }
+
+  isAnyFormInvalid(): boolean {
+    return this.userDataForm.invalid || this.carDataForm.invalid || this.interviewForm.invalid || this.descriptionForm.invalid || !this.statusSelected;
+  }
+
+
   save() {
+    this.submitted = true;
+
+    if(this.isAnyFormInvalid()){
+      console.log("i znowu...")
+      return;
+    }
+    console.log("poszli dalej");
     let requestBody: Task = {
       id: this.taskToEdit ? this.taskToEdit.id: null,
       status: this.statusSelected,
@@ -97,7 +113,9 @@ export class EditTaskComponent implements OnInit {
         firstName: this.userDataForm.get("firstName").value,
         lastName: this.userDataForm.get("lastName").value,
         personalId: this.userDataForm.get("personalId").value,
-        contact: null
+        contact: {
+          phoneNumber: this.userDataForm.get("phoneNumber").value
+        }
       },
       car: {
         id: parseInt(this.carDataForm.get("id").value),
@@ -109,8 +127,19 @@ export class EditTaskComponent implements OnInit {
       taskDoneDescription: this.descriptionForm.get("taskDoneDescription").value
     };
     console.log(requestBody);
-    this.modal.close(requestBody);
+    this.modal.close({
+      operation: 'createOrUpdate',
+      data: requestBody
+    });
   }
+
+  delete() {
+    this.modal.close({
+      operation: 'delete',
+      data: this.taskToEdit.id
+    });
+  }
+
 
   private fillUsingExistingTask(task: Task) {
     this.updateCarDataForm(task.car);
@@ -149,17 +178,17 @@ export class EditTaskComponent implements OnInit {
         registerNumber: ['', Validators.required],
         model: ['', Validators.required],
         mark: ['', Validators.required],
-        vinNumber: ['', Validators.required]
+        vinNumber: '',
       }
     );
 
     this.interviewForm = this.formBuilder.group({
-        interviewTaskDescription: ['', Validators.required]
+        interviewTaskDescription: ''
       }
     );
 
     this.descriptionForm = this.formBuilder.group({
-        taskDoneDescription: ['', Validators.required]
+        taskDoneDescription: ''
       }
     );
 
@@ -183,4 +212,5 @@ export class EditTaskComponent implements OnInit {
   setStatus(value: any) {
     this.statusSelected = value.status;
   }
+
 }

@@ -53,7 +53,17 @@ export class TaskListComponent implements OnInit {
     ngbModalRef.componentInstance.loadTaskToEdit(task);
     ngbModalRef.result.then(request => {
       if (request) {
-        this.taskService.update(request).subscribe(() => this.dataEdited.emit());
+        console.log(request);
+        switch (request.operation) {
+          case 'createOrUpdate': {
+            this.taskService.update(request.data).subscribe(() => this.dataEdited.emit());
+            break;
+          }
+          case 'delete': {
+            this.taskService.delete(request.data).subscribe(() => this.dataEdited.emit());
+            break;
+          }
+        }
       }
     }).catch(error => {
       console.log(error);
