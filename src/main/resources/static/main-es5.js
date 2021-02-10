@@ -2726,7 +2726,7 @@
 
       var environment = {
         production: false,
-        apiUrl: 'http://localhost:8080'
+        apiUrl: 'https://patrickoo-car-app.herokuapp.com'
       };
       /*
        * For easier debugging in development mode, you can import the following file
