@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.car.service</groupId>
-    <artifactId>main-app</artifactId>
+    <artifactId>car-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>car-service-main-app</name>
+    <name>car-app</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
